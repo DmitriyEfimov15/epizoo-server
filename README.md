@@ -28,6 +28,44 @@ docker compose --profile telegram up --build -d
 
 Без токена worker выполняет ETL. При наличии токена отправляет уведомления подписчикам после загрузки. `/start <UUID>` привязывает хозяйство только в личном чате; `/status`, `/settings`, `/digest`, `/stop` используют тот же профиль и сервисы, что API. Ссылка `t.me/...` содержит токен хозяйства — это секрет доступа к анонимному профилю, его нельзя публиковать. Веб-API не принимает произвольный `chat_id`: связь создаёт бот. Повторная привязка к другому чату запрещена до удаления подписки.
 
+## Деплой
+
+Схема как в jobadapt: GitHub Actions → registry → SSH → Docker Compose v2. Стенд один — prod на `epizoo-demo-stand-2026.ru`: клиент (репозиторий epizoo-client) и API по `/api/` за nginx хоста.
+
+- `.github/workflows/checks.yml` — pull request и push в `main`/`dev`: ruff (lint и format), `alembic check`, `pytest` против PostgreSQL 16 (включая конкурентный тест) и проверка `compose.prod.yaml`.
+- `.github/workflows/release-deploy.yml` — опубликованный GitHub Release или ручной запуск с тега (Use workflow from → Tags): проверки, сборка образа `<версия>` и `latest` (версия — тег без префикса `v`) и деплой. Ручной запуск с ветки ничего не собирает.
+
+Деплой по SSH: в `DEPLOY_DIR` копируется `compose.prod.yaml`, из secrets собирается `.deploy.env` (права 600), затем `docker compose pull` → запуск базы → миграции и справочники (`run --rm migrator`, то есть `python -m app.db.init`) → `up -d --wait` (ждёт healthcheck API) → `docker image prune -af`. Тома с данными остаются. Бот запускается, только если задан `TELEGRAM_BOT_TOKEN`.
+
+GitHub environment `release`:
+
+| Secret | Значение |
+|---|---|
+| `REGISTRY_URL` | registry host[:port], без https:// |
+| `REGISTRY_REPO` | путь Docker-репозитория сервера |
+| `REGISTRY_USER`, `REGISTRY_TOKEN` | доступ к registry |
+| `SSH_HOST`, `SSH_USER`, `SSH_KEY` | сервер деплоя |
+| `DEPLOY_DIR` | абсолютный путь каталога на сервере (не тот же, что у клиента) |
+| `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD` | база в Compose |
+| `DATABASE_URL` | `postgresql+asyncpg://USER:PASSWORD@db:5432/DB`, пароль percent-encode |
+| `API_KEY` | ключ закрытых API; без него `POST /internal/etl/run` недоступен |
+| `FRONTEND_URL` | `https://epizoo-demo-stand-2026.ru` — для ссылок из бота |
+| `CORS_ORIGINS` | необязательный: клиент и API на одном домене, CORS не нужен |
+| `TELEGRAM_BOT_TOKEN`, `TELEGRAM_BOT_USERNAME` | необязательные: бот и оповещения |
+| `SUMMARY_PROVIDER`, `YANDEX_API_KEY`, `YANDEX_FOLDER_ID` | необязательные: `yandex` для саммари через YandexGPT |
+
+Пустые необязательные secrets в `.deploy.env` не попадают — действуют значения по умолчанию. Значения — без переводов строк; кавычки и `$` экранируются при записи.
+
+Сервер: bash, Docker с плагином Compose v2 и доступ к registry. API слушает `127.0.0.1:3021`, наружу его отдаёт nginx хоста по `/api/` (`nginx.host.conf` в epizoo-client). Postgres не публикуется. Compose-проект — `epizoo-server`.
+
+После первого деплоя загрузите корпус публикаций (в `DEPLOY_DIR`):
+
+```bash
+docker compose --env-file .deploy.env -f compose.prod.yaml exec api python -m etl.cli backfill
+```
+
+Откат: поменяйте `VERSION` в `.deploy.env` на прошлую версию и выполните в `DEPLOY_DIR` `docker compose --env-file .deploy.env -f compose.prod.yaml up -d --wait`. Миграции автоматически не откатываются: проверьте совместимость версии со схемой БД.
+
 ## Локальный запуск
 
 Python 3.12+, `uv` и PostgreSQL 16:

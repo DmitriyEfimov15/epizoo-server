@@ -18,3 +18,6 @@ data/cache/
 # openapi.json оставлен в репозитории — из него генерируются типы фронтенда (pnpm api:types).
 docs/*
 !docs/openapi.json
+
+# Переменные прод-стенда (собирает release-deploy.yml)
+.deploy.env

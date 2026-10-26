@@ -1,0 +1,153 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  checks:
+    uses: ./.github/workflows/checks.yml
+
+  build-and-push:
+    needs: checks
+    # Ручной запуск — только с тега (Use workflow from → Tags).
+    if: github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.vars.outputs.version }}
+    environment: release
+    env:
+      REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
+      REGISTRY_REPO: ${{ secrets.REGISTRY_REPO }}
+    steps:
+      - name: Checkout tag
+        uses: actions/checkout@v4
+
+      - name: Compute version from tag
+        id: vars
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Docker login
+        run: echo "${{ secrets.REGISTRY_TOKEN }}" | docker login "$REGISTRY_URL" -u "${{ secrets.REGISTRY_USER }}" --password-stdin
+
+      # Один образ на API, worker, бота и миграции (python -m app.db.init).
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ env.REGISTRY_URL }}/${{ env.REGISTRY_REPO }}:${{ steps.vars.outputs.version }}
+            ${{ env.REGISTRY_URL }}/${{ env.REGISTRY_REPO }}:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max,ignore-error=true
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    environment: release
+    steps:
+      - name: Checkout tag
+        uses: actions/checkout@v4
+
+      - name: Ensure deploy dir exists
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            mkdir -p "${{ secrets.DEPLOY_DIR }}"
+
+      - name: Upload compose
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          source: compose.prod.yaml
+          target: ${{ secrets.DEPLOY_DIR }}/
+
+      - name: Deploy over SSH
+        uses: appleboy/ssh-action@v1.2.0
+        env:
+          DEPLOY_DIR: ${{ secrets.DEPLOY_DIR }}
+          VERSION: ${{ needs.build-and-push.outputs.version }}
+          REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
+          REGISTRY_REPO: ${{ secrets.REGISTRY_REPO }}
+          REGISTRY_USER: ${{ secrets.REGISTRY_USER }}
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          API_KEY: ${{ secrets.API_KEY }}
+          FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
+          CORS_ORIGINS: ${{ secrets.CORS_ORIGINS }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_BOT_USERNAME: ${{ secrets.TELEGRAM_BOT_USERNAME }}
+          SUMMARY_PROVIDER: ${{ secrets.SUMMARY_PROVIDER }}
+          YANDEX_API_KEY: ${{ secrets.YANDEX_API_KEY }}
+          YANDEX_FOLDER_ID: ${{ secrets.YANDEX_FOLDER_ID }}
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          envs: DEPLOY_DIR,VERSION,REGISTRY_URL,REGISTRY_REPO,REGISTRY_USER,REGISTRY_TOKEN,POSTGRES_DB,POSTGRES_USER,POSTGRES_PASSWORD,DATABASE_URL,API_KEY,FRONTEND_URL,CORS_ORIGINS,TELEGRAM_BOT_TOKEN,TELEGRAM_BOT_USERNAME,SUMMARY_PROVIDER,YANDEX_API_KEY,YANDEX_FOLDER_ID
+          script: |
+            set -euo pipefail
+
+            cd "$DEPLOY_DIR"
+
+            IMAGE="${REGISTRY_URL}/${REGISTRY_REPO}:${VERSION}"
+
+            umask 077
+            : > .deploy.env
+            for KEY in REGISTRY_URL REGISTRY_REPO VERSION \
+              POSTGRES_DB POSTGRES_USER POSTGRES_PASSWORD DATABASE_URL \
+              API_KEY FRONTEND_URL CORS_ORIGINS \
+              TELEGRAM_BOT_TOKEN TELEGRAM_BOT_USERNAME \
+              SUMMARY_PROVIDER YANDEX_API_KEY YANDEX_FOLDER_ID; do
+              VALUE="${!KEY:-}"
+              [ -n "$VALUE" ] || continue
+              VALUE="${VALUE//\\/\\\\}"
+              VALUE="${VALUE//\"/\\\"}"
+              VALUE="${VALUE//\$/\$\$}"
+              printf '%s="%s"\n' "$KEY" "$VALUE" >> .deploy.env
+            done
+
+            echo "$REGISTRY_TOKEN" | docker login "$REGISTRY_URL" -u "$REGISTRY_USER" --password-stdin
+
+            compose=(docker compose --env-file .deploy.env -f compose.prod.yaml)
+            if [ -n "${TELEGRAM_BOT_TOKEN:-}" ]; then
+              compose+=(--profile telegram)
+            fi
+
+            echo "Pulling $IMAGE ..."
+            "${compose[@]}" --profile migration pull
+
+            echo "Starting DB"
+            "${compose[@]}" up -d --wait db
+
+            echo "Running DB migrations"
+            "${compose[@]}" --profile migration run --rm migrator
+
+            echo "Starting app"
+            "${compose[@]}" up -d --wait --wait-timeout 180 --remove-orphans
+
+            echo "Deployed $IMAGE successfully."
+
+            echo "Running Clean Up..."
+            docker image prune -af
+            docker builder prune -af

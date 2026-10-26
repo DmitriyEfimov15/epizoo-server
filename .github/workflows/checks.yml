@@ -1,0 +1,72 @@
+name: Checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - 'main'
+      - 'dev'
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: epizoo
+          POSTGRES_PASSWORD: epizoo
+          POSTGRES_DB: epizoo_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U epizoo -d epizoo_test"
+          --health-interval 3s
+          --health-timeout 3s
+          --health-retries 20
+
+    env:
+      TEST_PG_URL: postgresql+asyncpg://epizoo:epizoo@127.0.0.1:5432/epizoo_test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: '3.12'
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Ruff lint
+        run: uv run ruff check app etl bot worker tests
+
+      - name: Ruff format
+        run: uv run ruff format --check app etl bot worker tests
+        if: always()
+
+      - name: Migrations match models
+        run: |
+          uv run alembic upgrade head
+          uv run alembic check
+        env:
+          DATABASE_URL: ${{ env.TEST_PG_URL }}
+
+      # Без TEST_DATABASE_URL API-тесты идут на SQLite, а конкурентный тест пропускается.
+      - name: Tests
+        run: uv run pytest
+        env:
+          TEST_DATABASE_URL: ${{ env.TEST_PG_URL }}
+
+      - name: Compose config
+        run: |
+          cp .github/compose-check.env .deploy.env
+          docker compose --env-file .deploy.env -f compose.prod.yaml config --quiet
