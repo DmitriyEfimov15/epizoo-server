@@ -1,0 +1,70 @@
+# Правила показа являются продуктовой эвристикой MVP.
+# http_200 — проверено прямым HTTPS-запросом; indexed_only — доступен официальный индекс, прямой сайт не ответил.
+- id: televeterinarian
+  title: Телеветеринар
+  description: Онлайн-консультации ветеринарных врачей и зоотехников. Сервис помогает
+    уточнить дальнейшие действия и вопросы сопроводительных документов. Условия подключения
+    — на странице сервиса.
+  url: https://svoefermerstvo.ru/services/vetexpert
+  min_level: 3
+  species:
+  - cattle
+  - small_ruminants
+  - pigs
+  - poultry
+  - horses
+  - rabbits
+  - carnivores
+  requires_quarantine: false
+  requires_zoonosis: false
+  verification_status: http_200
+  source_url: https://svoefermerstvo.ru/services/vetexpert
+  verified_at: '2026-10-14'
+- id: livestock-insurance
+  title: Страхование сельскохозяйственных животных
+  description: Ознакомьтесь с правилами РСХБ-Страхование и уточните возможность заключения
+    договора у страховщика. Ссылка ведёт на официальный PDF правил. Животные в хозяйствах
+    с действующим карантином могут исключаться из страхования; карточка не означает
+    одобрение договора или покрытие уже возникшего события.
+  url: https://www.rshb.ru/api/v1/storage/5d895784-0593-4e23-b470-3f03610317ec/attachment
+  min_level: 3
+  species:
+  - cattle
+  - small_ruminants
+  - pigs
+  - poultry
+  - horses
+  - bees
+  - rabbits
+  requires_quarantine: false
+  requires_zoonosis: false
+  verification_status: indexed_only
+  source_url: https://www.rshb.ru/api/v1/storage/5d895784-0593-4e23-b470-3f03610317ec/attachment
+  verified_at: '2026-10-14'
+- id: preferential-farm-credit
+  title: Льготное кредитование АПК
+  description: Программы Россельхозбанка для сельхозпроизводителей. Подробные условия
+    и возможность финансирования определяются банком и действующей программой; высокий
+    уровень события сам по себе не даёт права на кредит.
+  url: https://www.rshb.ru/business/credits/apk-benefits
+  min_level: 3
+  species: []
+  requires_quarantine: false
+  requires_zoonosis: false
+  verification_status: indexed_only
+  source_url: https://www.rshb.ru/business/credits/apk-benefits
+  verified_at: '2026-10-14'
+- id: veterinary-catalog
+  title: Ветеринарные товары для хозяйства
+  description: Каталог ветеринарных товаров для хозяйства. Конкретные
+    препараты и средства, включая дезинфицирующие, следует выбирать по назначениям
+    ветеринарного специалиста и инструкции производителя. Карточка не содержит назначения
+    лечения.
+  url: https://svoefermerstvo.ru/catalog/veterinarija
+  min_level: 3
+  species: []
+  requires_quarantine: true
+  requires_zoonosis: false
+  verification_status: http_200
+  source_url: https://svoefermerstvo.ru/catalog/veterinarija
+  verified_at: '2026-10-14'

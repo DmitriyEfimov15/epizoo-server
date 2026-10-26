@@ -1,0 +1,61 @@
+name: epizoo-backend
+x-backend: &backend
+  build: .
+  env_file:
+    - path: .env
+      required: false
+  environment:
+    DATABASE_URL: postgresql+asyncpg://epizoo:${POSTGRES_PASSWORD:-epizoo}@db:5432/epizoo
+  volumes:
+    - report-cache:/app/data/cache
+  restart: unless-stopped
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: epizoo
+      POSTGRES_USER: epizoo
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-epizoo}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U epizoo -d epizoo]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+  init:
+    <<: *backend
+    command: python -m app.db.init
+    restart: 'no'
+    depends_on:
+      db:
+        condition: service_healthy
+  api:
+    <<: *backend
+    ports:
+      - '127.0.0.1:8000:8000'
+    depends_on:
+      init:
+        condition: service_completed_successfully
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+  worker:
+    <<: *backend
+    command: python -m worker.scheduler
+    depends_on:
+      init:
+        condition: service_completed_successfully
+  bot:
+    <<: *backend
+    profiles: [telegram]
+    command: python -m bot.main
+    depends_on:
+      init:
+        condition: service_completed_successfully
+volumes:
+  postgres-data:
+  report-cache:

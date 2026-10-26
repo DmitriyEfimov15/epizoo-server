@@ -1,0 +1,44 @@
+[project]
+name = "epizoo-backend"
+version = "0.1.0"
+description = "Мониторинг эпизоотической ситуации в РФ: API, ETL, бот"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.6",
+    "sqlalchemy[asyncio]>=2.0.36",
+    "alembic>=1.14",
+    "asyncpg>=0.30",
+    "aiosqlite>=0.20",
+    "httpx>=0.27",
+    "pymupdf>=1.24",
+    "pyyaml>=6.0",
+    "rapidfuzz>=3.10",
+    "apscheduler>=3.10,<4",
+    "aiogram>=3.13",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "ruff>=0.7",
+    "shapely>=2.0",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

@@ -1,0 +1,653 @@
+# base_level — эвристика MVP, не официальная оценка.
+# symptoms/recommendations: [] означает отсутствие проверенной информации в карточке.
+# Источники признаков и действий проверены для 8 карточек; см. docs/data-sources.md.
+- slug: rabies
+  name: Бешенство животных
+  aliases:
+  - Бешенство
+  - Бешенство млекопитающих
+  species:
+  - cattle
+  - small_ruminants
+  - pigs
+  - horses
+  - rabbits
+  - carnivores
+  - wildlife
+  is_zoonosis: true
+  base_level: 5
+  description: Вирусная инфекция млекопитающих, относящаяся к зоонозам.
+  recommendations:
+  - text: При подозрении на бешенство сообщите в течение 24 часов в региональный орган
+      ветеринарии или подведомственную ему организацию (пункт 11).
+    source_url: https://pravo.gov.ru/proxy/ips/?docbody=&nd=102951273
+  - text: Предоставьте животных для осмотра по требованию специалистов государственной
+      ветеринарной службы (пункт 7).
+    source_url: https://pravo.gov.ru/proxy/ips/?docbody=&nd=102951273
+  symptoms:
+  - Изменение поведения, приступы агрессии
+  - Слюнотечение и затруднённое глотание
+  - Судороги, парезы или параличи
+  symptoms_note: Признаки приведены справочно по пункту 3 ветеринарных правил. По
+    ним нельзя самостоятельно подтвердить или исключить инфекцию; диагноз устанавливает
+    ветеринарный специалист.
+  symptom_source_urls:
+  - https://pravo.gov.ru/proxy/ips/?docbody=&nd=102951273
+  guidance_rule:
+    number: '705'
+    date: '2020-11-25'
+    valid_from: '2021-03-01'
+    valid_until: '2027-03-01'
+  guidance_verified_at: '2026-10-14'
+- slug: brucellosis
+  name: Бруцеллёз животных
+  aliases:
+  - Бруцеллёз
+  - Бруцеллёз КРС
+  - Бруцеллёз собаки
+  - Бруцеллёз МРС
+  - Бруцеллёз КРС/МРС
+  - Бруцеллёз лошади
+  - Бруцеллёз лошадей
+  - Бруцеллёз крупного рогатого скота
+  - Бруцеллез купного рогатого скота
+  - Бруцеллёз мелкого рогатого скота
+  species:
+  - cattle
+  - small_ruminants
+  - pigs
+  - horses
+  - carnivores
+  - wildlife
+  is_zoonosis: true
+  base_level: 4
+  description: Бактериальная инфекция животных, способная передаваться человеку. Карточка
+    объединяет видовые варианты названия из сводок.
+  recommendations:
+  - text: О внезапном падеже, одновременном массовом заболевании или необычном поведении
+      животных сообщите государственной ветеринарной службе в течение 24 часов (пункт
+      7).
+    source_url: https://publication.pravo.gov.ru/document/0001202411300003
+  - text: Обеспечьте доступ к животным для осмотра по требованию специалистов государственной
+      ветеринарной службы (пункт 7).
+    source_url: https://publication.pravo.gov.ru/document/0001202411300003
+  symptoms:
+  - Аборты, рождение мёртвого или нежизнеспособного приплода
+  - У самцов — воспаление семенников и их придатков
+  - Возможно бессимптомное течение
+  symptoms_note: Признаки приведены справочно по пункту 3 ветеринарных правил. По
+    ним нельзя самостоятельно подтвердить или исключить инфекцию; диагноз устанавливает
+    ветеринарный специалист.
+  symptom_source_urls:
+  - https://publication.pravo.gov.ru/document/0001202411300003
+  guidance_rule:
+    number: '703'
+    date: '2024-11-22'
+    valid_from: '2025-03-01'
+    valid_until: '2031-03-01'
+  guidance_verified_at: '2026-10-14'
+- slug: leukosis
+  name: Лейкоз КРС
+  aliases:
+  - Лейкоз
+  - Лейкоз крупного рогатого скота
+  - Энзоотический лейкоз крупного рогатого скота
+  species:
+  - cattle
+  is_zoonosis: false
+  base_level: 3
+  description: Вирусная инфекция крупного рогатого скота; в источнике используется
+    также полное название «лейкоз крупного рогатого скота».
+  recommendations:
+  - text: О заболевании, гибели животных или изменениях поведения, указывающих на
+      возможный лейкоз, сообщите государственной ветеринарной службе в течение 24
+      часов (пункт 7).
+    source_url: https://publication.pravo.gov.ru/document/0001202104290036
+  - text: Предоставьте животных для осмотра по требованию специалистов государственной
+      ветеринарной службы (пункт 7).
+    source_url: https://publication.pravo.gov.ru/document/0001202104290036
+  symptoms:
+  - В бессимптомной и гематологической стадиях характерные внешние признаки отсутствуют
+  - В клинической стадии — увеличение лимфатических узлов, опухолевые образования
+  - В клинической стадии — исхудание, снижение молокоотдачи, отёки
+  symptoms_note: Признаки приведены справочно по пункту 3 ветеринарных правил. По
+    ним нельзя самостоятельно подтвердить или исключить инфекцию; диагноз устанавливает
+    ветеринарный специалист.
+  symptom_source_urls:
+  - https://publication.pravo.gov.ru/document/0001202104290036
+  guidance_rule:
+    number: '156'
+    date: '2021-03-24'
+    valid_from: '2021-09-01'
+    valid_until: '2027-09-01'
+  guidance_verified_at: '2026-10-14'
+- slug: trichinellosis
+  name: Трихинеллёз
+  aliases:
+  - Трихинеллёз животных
+  - Трихинеллёз диких животных
+  - Трихинеллёз собак
+  species:
+  - pigs
+  - horses
+  - carnivores
+  - wildlife
+  is_zoonosis: true
+  base_level: 4
+  description: Паразитарная инфекция, вызываемая трихинеллами; относится к зоонозам.
+  recommendations:
+  - text: При подозрении на трихинеллёз сообщите в течение 24 часов в региональный
+      орган ветеринарии или подведомственную ему организацию (пункт 11).
+    source_url: https://pravo.gov.ru/proxy/ips/?docbody=&nd=102724248
+  - text: Предоставьте животных для осмотра по требованию специалистов государственной
+      ветеринарной службы (пункт 7).
+    source_url: https://pravo.gov.ru/proxy/ips/?docbody=&nd=102724248
+  symptoms:
+  - При остром течении — потеря аппетита, угнетение, отёки
+  - При остром течении — мышечные боли, повышение температуры тела, диарея
+  - При хроническом течении внешние признаки могут отсутствовать
+  symptoms_note: Признаки приведены справочно по пункту 3 ветеринарных правил. По
+    ним нельзя самостоятельно подтвердить или исключить инфекцию; диагноз устанавливает
+    ветеринарный специалист.
+  symptom_source_urls:
+  - https://pravo.gov.ru/proxy/ips/?docbody=&nd=102724248
+  guidance_rule:
+    number: '154'
+    date: '2020-03-26'
+    valid_from: null
+    valid_until: '2032-03-01'
+    amendments:
+    - number: '769'
+      date: '2025-12-05'
+      source_url: https://publication.pravo.gov.ru/document/0001202602040028
+  guidance_verified_at: '2026-10-14'
+- slug: emphysematous-carbuncle
+  name: Эмфизематозный карбункул
+  aliases:
+  - Эмкар
+  - Эмфизематозный карбункул КРС
+  - Эмфизематозный карбункул (Эмкар)
+  - Эмфизематозный кабункул (Эмкар)
+  - Эмфизематозный карбункул (Эмкар) животных
+  species:
+  - cattle
+  - small_ruminants
+  is_zoonosis: false
+  base_level: 4
+  description: Бактериальная инфекция животных, обозначаемая в сводках также сокращением
+    «Эмкар».
+  recommendations: []
+  symptoms: []
+- slug: leptospirosis
+  name: Лептоспироз животных
+  aliases:
+  - Лептоспироз
+  - Лептоспироз КРС
+  - Лептоспироз свиней
+  - Лептоспироз лошадей
+  - Лептоспироз лошади
+  - Лептоспироз собаки
+  - Лептоспироз собак
+  - Лептоспироз крупного рогатого скота
+  species:
+  - cattle
+  - small_ruminants
+  - pigs
+  - horses
+  - carnivores
+  - wildlife
+  is_zoonosis: true
+  base_level: 4
+  description: Бактериальная инфекция животных, относящаяся к зоонозам. Вид животного
+    уточняется по сообщению источника.
+  recommendations:
+  - text: О заболевании, гибели или изменениях поведения животных сообщите государственной
+      ветеринарной службе в течение 24 часов любым доступным способом (пункт 7).
+    source_url: https://publication.pravo.gov.ru/document/0001202312130002
+  - text: Обеспечьте доступ к животным для осмотра по требованию специалистов государственной
+      ветеринарной службы (пункт 7).
+    source_url: https://publication.pravo.gov.ru/document/0001202312130002
+  symptoms:
+  - Желтушное окрашивание слизистых и кожи; у свиней — только у новорождённых поросят
+  - Лихорадка, кровь или гемоглобин в моче
+  - Аборты, рождение мёртвого или нежизнеспособного потомства
+  - Возможно бессимптомное течение
+  symptoms_note: Признаки приведены справочно по пункту 3 ветеринарных правил. По
+    ним нельзя самостоятельно подтвердить или исключить инфекцию; диагноз устанавливает
+    ветеринарный специалист.
+  symptom_source_urls:
+  - https://publication.pravo.gov.ru/document/0001202312130002
+  guidance_rule:
+    number: '847'
+    date: '2023-11-10'
+    valid_from: '2024-09-01'
+    valid_until: '2030-09-01'
+  guidance_verified_at: '2026-10-14'
+- slug: infectious-anemia
+  name: Инфекционная анемия лошадей
+  aliases:
+  - Инан
+  - ИНАН
+  - Инфекционная анемия лошадей (Инан)
+  species:
+  - horses
+  is_zoonosis: false
+  base_level: 3
+  description: Вирусная инфекция лошадей, регистрируемая в оперативных сообщениях
+    под названием «инфекционная анемия».
+  recommendations: []
+  symptoms: []
+- slug: dourine
+  name: Случная болезнь лошадей
+  aliases:
+  - Случная болезнь
+  - Дурина
+  - Дурин
+  species:
+  - horses
+  is_zoonosis: false
+  base_level: 3
+  description: Паразитарная инфекция лошадей, обозначаемая также как дурина.
+  recommendations: []
+  symptoms: []
+- slug: varroatosis
+  name: Варроатоз пчёл
+  aliases:
+  - Варроатоз
+  - Варрооз
+  - Варрооз пчёл
+  species:
+  - bees
+  is_zoonosis: false
+  base_level: 2
+  description: Паразитарное заболевание пчёл, связанное с клещами Varroa.
+  recommendations: []
+  symptoms: []
+- slug: nosemosis
+  name: Нозематоз пчёл
+  aliases:
+  - Нозематоз
+  species:
+  - bees
+  is_zoonosis: false
+  base_level: 2
+  description: Инфекция пчёл, связанная с микроорганизмами группы Nosema.
+  recommendations: []
+  symptoms: []
+- slug: tuberculosis
+  name: Туберкулёз животных
+  aliases:
+  - Туберкулёз
+  - Туберкулёз КРС
+  - Туберкулёз МРС
+  - Туберкулёз крупного рогатого скота
+  - Туберкулёз мелкого рогатого скота
+  species:
+  - cattle
+  - small_ruminants
+  - pigs
+  - carnivores
+  - wildlife
+  is_zoonosis: true
+  base_level: 4
+  description: Бактериальная инфекция животных; для отдельных возбудителей возможна
+    передача человеку.
+  recommendations: []
+  symptoms: []
+- slug: parainfluenza-3
+  name: Парагрипп-3 КРС
+  aliases:
+  - Парагрипп-3
+  - Парагрипп 3 КРС
+  - Парагрипп-3 крупного рогатого скота
+  species:
+  - cattle
+  is_zoonosis: false
+  base_level: 2
+  description: Вирусная инфекция крупного рогатого скота, обозначаемая в сводках как
+    парагрипп-3.
+  recommendations: []
+  symptoms: []
+- slug: chlamydiosis
+  name: Хламидиоз животных
+  aliases:
+  - Хламидиоз
+  - Хламидиоз КРС
+  - Хламидиоз птиц
+  - Хламидиоз птиц (орнитоз)
+  - Хламидиоз животных/птиц
+  - Орнитоз
+  - Орнитоз птиц
+  species:
+  - cattle
+  - small_ruminants
+  - pigs
+  - horses
+  - poultry
+  - carnivores
+  - wildlife
+  is_zoonosis: true
+  base_level: 3
+  description: Группа инфекций животных и птиц. Некоторые возбудители, включая возбудителя
+    орнитоза, имеют зоонозный потенциал; конкретный возбудитель из общего названия
+    не определяется.
+  recommendations: []
+  symptoms: []
+- slug: canine-distemper
+  name: Чума плотоядных
+  aliases:
+  - Чума собак
+  species:
+  - carnivores
+  - wildlife
+  is_zoonosis: false
+  base_level: 3
+  description: Вирусная инфекция плотоядных животных.
+  recommendations: []
+  symptoms: []
+- slug: salmonellosis
+  name: Сальмонеллёз животных
+  aliases:
+  - Сальмонеллёз
+  - Сальмонеллёз птиц
+  species:
+  - cattle
+  - small_ruminants
+  - pigs
+  - poultry
+  - horses
+  - rabbits
+  - carnivores
+  - wildlife
+  is_zoonosis: true
+  base_level: 3
+  description: Группа бактериальных инфекций животных и птиц, связанных с Salmonella;
+    некоторые возбудители передаются человеку.
+  recommendations: []
+  symptoms: []
+- slug: lumpy-skin-disease
+  name: Заразный узелковый дерматит
+  aliases:
+  - Нодулярный дерматит
+  - Нодулярный дерматит КРС
+  - Заразный узелковый дерматит КРС
+  species:
+  - cattle
+  is_zoonosis: false
+  base_level: 4
+  description: Вирусная инфекция крупного рогатого скота, называемая также нодулярным
+    дерматитом.
+  recommendations: []
+  symptoms: []
+- slug: avian-influenza
+  name: Высокопатогенный грипп птиц
+  aliases:
+  - Грипп птиц
+  - Птичий грипп
+  - ВГП
+  - Высокопатогенный грипп
+  species:
+  - poultry
+  - wildlife
+  is_zoonosis: true
+  base_level: 5
+  description: Вирусная инфекция птиц. Для отдельных штаммов существует зоонозный
+    потенциал; конкретный штамм уточняется по первоисточнику.
+  recommendations:
+  - text: При подозрении на высокопатогенный грипп птиц сообщите в течение 24 часов
+      в региональный орган ветеринарии или подведомственную ему организацию (пункт
+      11).
+    source_url: https://publication.pravo.gov.ru/document/0001202104300016
+  - text: Предоставьте птиц для осмотра по требованию специалистов государственной
+      ветеринарной службы (пункт 7).
+    source_url: https://publication.pravo.gov.ru/document/0001202104300016
+  symptoms:
+  - Снижение продуктивности, угнетение, отказ от корма и воды
+  - Взъерошенное оперение, посинение кожи, отёк межчелюстного пространства
+  - Нарушение координации движений, диарея
+  - У вакцинированных и диких водоплавающих птиц возможно бессимптомное течение
+  symptoms_note: Признаки приведены справочно по пункту 3 ветеринарных правил. По
+    ним нельзя самостоятельно подтвердить или исключить инфекцию; диагноз устанавливает
+    ветеринарный специалист.
+  symptom_source_urls:
+  - https://publication.pravo.gov.ru/document/0001202104300016
+  guidance_rule:
+    number: '158'
+    date: '2021-03-24'
+    valid_from: '2021-09-01'
+    valid_until: '2027-09-01'
+  guidance_verified_at: '2026-10-14'
+- slug: african-swine-fever
+  name: Африканская чума свиней
+  aliases:
+  - АЧС
+  - Африканская чума свиней (АЧС)
+  species:
+  - pigs
+  - wildlife
+  is_zoonosis: false
+  base_level: 5
+  description: Вирусная инфекция домашних и диких свиней; не относится к зоонозам.
+  recommendations:
+  - text: При подозрении на АЧС сообщите в течение 24 часов в региональный орган ветеринарии
+      или подведомственную ему организацию (пункт 15).
+    source_url: https://pravo.gov.ru/proxy/ips/?docbody=&nd=602024222
+  - text: Предоставьте свиней для осмотра по требованию специалистов государственной
+      ветеринарной службы (пункт 7).
+    source_url: https://pravo.gov.ru/proxy/ips/?docbody=&nd=602024222
+  symptoms:
+  - Лихорадка и угнетённое состояние
+  - Посинение или покраснение кожи ушей, живота, промежности и хвоста
+  - Диарея, кровянистые выделения из носа, судороги
+  - У супоросных свиноматок возможны аборты
+  symptoms_note: Признаки приведены справочно по пункту 3 ветеринарных правил. По
+    ним нельзя самостоятельно подтвердить или исключить инфекцию; диагноз устанавливает
+    ветеринарный специалист.
+  symptom_source_urls:
+  - https://pravo.gov.ru/proxy/ips/?docbody=&nd=602024222
+  guidance_rule:
+    number: '37'
+    date: '2021-01-28'
+    valid_from: '2021-03-01'
+    valid_until: '2027-03-01'
+  guidance_verified_at: '2026-10-14'
+- slug: anthrax
+  name: Сибирская язва
+  aliases:
+  - Сибирская язва животных
+  species:
+  - cattle
+  - small_ruminants
+  - pigs
+  - horses
+  - wildlife
+  is_zoonosis: true
+  base_level: 5
+  description: Бактериальная инфекция животных, относящаяся к зоонозам.
+  recommendations:
+  - text: При подозрении на сибирскую язву сообщите в течение 24 часов в региональный
+      орган ветеринарии или подведомственную ему организацию (пункт 10).
+    source_url: https://pravo.gov.ru/proxy/ips/?docbody=&nd=602504509
+  - text: Предоставьте животных для осмотра по требованию специалистов государственной
+      ветеринарной службы (пункт 7).
+    source_url: https://pravo.gov.ru/proxy/ips/?docbody=&nd=602504509
+  symptoms:
+  - Внезапный падёж без предварительных внешних признаков при молниеносном течении
+  - При остром и подостром течении — лихорадка, мышечная дрожь, учащённое дыхание
+  - Угнетение, отказ от корма, горячие припухлости и отёки
+  symptoms_note: Признаки приведены справочно по пункту 3 ветеринарных правил. По
+    ним нельзя самостоятельно подтвердить или исключить инфекцию; диагноз устанавливает
+    ветеринарный специалист.
+  symptom_source_urls:
+  - https://pravo.gov.ru/proxy/ips/?docbody=&nd=602504509
+  guidance_rule:
+    number: '648'
+    date: '2021-09-23'
+    valid_from: '2022-03-01'
+    valid_until: '2028-03-01'
+  guidance_verified_at: '2026-10-14'
+- slug: foot-and-mouth-disease
+  name: Ящур
+  aliases:
+  - Ящур животных
+  - Ящур КРС
+  species:
+  - cattle
+  - small_ruminants
+  - pigs
+  - wildlife
+  is_zoonosis: false
+  base_level: 5
+  description: Вирусная инфекция парнокопытных; WOAH не рассматривает ящур как риск
+    для общественного здоровья.
+  recommendations: []
+  symptoms: []
+- slug: classical-swine-fever
+  name: Классическая чума свиней
+  aliases:
+  - КЧС
+  - Классическая чума свиней (КЧС)
+  species:
+  - pigs
+  - wildlife
+  is_zoonosis: false
+  base_level: 5
+  description: Вирусная инфекция домашних и диких свиней.
+  recommendations: []
+  symptoms: []
+- slug: newcastle-disease
+  name: Болезнь Ньюкасла
+  aliases:
+  - Ньюкаслская болезнь
+  - Псевдочума птиц
+  species:
+  - poultry
+  - wildlife
+  is_zoonosis: true
+  base_level: 4
+  description: Вирусная инфекция птиц; при отдельных профессиональных контактах описана
+    инфекция человека.
+  recommendations: []
+  symptoms: []
+- slug: sheep-and-goat-pox
+  name: Оспа овец и коз
+  aliases:
+  - Оспа овец
+  - Оспа коз
+  - Оспа МРС
+  species:
+  - small_ruminants
+  is_zoonosis: false
+  base_level: 4
+  description: Вирусные инфекции овец и коз, объединённые в одну справочную карточку.
+  recommendations: []
+  symptoms: []
+- slug: glanders
+  name: Сап
+  aliases:
+  - Сап лошадей
+  species:
+  - horses
+  is_zoonosis: true
+  base_level: 5
+  description: Бактериальная инфекция лошадей, относящаяся к зоонозам.
+  recommendations: []
+  symptoms: []
+- slug: myxomatosis
+  name: Миксоматоз кроликов
+  aliases:
+  - Миксоматоз
+  species:
+  - rabbits
+  is_zoonosis: false
+  base_level: 3
+  description: Вирусная инфекция кроликов.
+  recommendations: []
+  symptoms: []
+- slug: rabbit-hemorrhagic-disease
+  name: Вирусная геморрагическая болезнь кроликов
+  aliases:
+  - ВГБК
+  - Геморрагическая болезнь кроликов
+  species:
+  - rabbits
+  is_zoonosis: false
+  base_level: 4
+  description: Вирусная инфекция кроликов, обозначаемая сокращением ВГБК.
+  recommendations: []
+  symptoms: []
+- slug: american-foulbrood
+  name: Американский гнилец пчёл
+  aliases:
+  - Американский гнилец
+  species:
+  - bees
+  is_zoonosis: false
+  base_level: 3
+  description: Бактериальная инфекция расплода пчёл.
+  recommendations: []
+  symptoms: []
+- slug: european-foulbrood
+  name: Европейский гнилец пчёл
+  aliases:
+  - Европейский гнилец
+  species:
+  - bees
+  is_zoonosis: false
+  base_level: 3
+  description: Бактериальная инфекция расплода пчёл.
+  recommendations: []
+  symptoms: []
+- slug: bluetongue
+  name: Блутанг
+  aliases:
+  - Блютанг
+  - Катаральная лихорадка овец
+  species:
+  - cattle
+  - small_ruminants
+  - wildlife
+  is_zoonosis: false
+  base_level: 4
+  description: Вирусная инфекция жвачных, обозначаемая также как катаральная лихорадка
+    овец.
+  recommendations: []
+  symptoms: []
+- slug: piroplasmosis
+  name: Пироплазмоз животных
+  aliases:
+  - Пироплазмоз
+  - Пироплазмоз собак
+  - Бабезиоз собак
+  species:
+  - cattle
+  - horses
+  - carnivores
+  - wildlife
+  is_zoonosis: true
+  base_level: 3
+  description: Группа паразитарных инфекций. Зоонозный потенциал зависит от возбудителя;
+    общий заголовок не определяет наличие опасности для человека.
+  recommendations: []
+  symptoms: []
+
+- slug: pasteurellosis
+  name: Пастереллёз животных
+  aliases:
+  - Пастереллёз
+  species:
+  - cattle
+  - small_ruminants
+  - pigs
+  - poultry
+  - carnivores
+  - wildlife
+  is_zoonosis: true
+  base_level: 3
+  description: Группа бактериальных инфекций с потенциально зоонозными возбудителями Pasteurella. Виды и конкретный возбудитель уточняются по сообщению источника; перечень групп не исчерпывающий.
+  recommendations: []
+  symptoms: []
+  reference_urls:
+  - https://www.woah.org/en/disease/pasteurellosis/
+  - https://www.cdc.gov/yellow-book/hcp/environmental-hazards-risks/zoonotic-exposures.html
+  - https://wwwnc.cdc.gov/eid/article/25/2/18-0641_article

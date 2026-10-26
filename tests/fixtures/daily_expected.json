@@ -1,0 +1,36 @@
+{
+  "daily_2026-03-11.pdf": [
+    {"disease":"Бешенство животных","region":"Алтайский край","locality":"Толстая Дуброва","species":["horses"],"kind":"quarantine_set"},
+    {"disease":"Бешенство животных","region":"Алтайский край","locality":"Лебяжье","species":["carnivores"],"kind":"quarantine_set"},
+    {"disease":"Бешенство животных","region":"Белгородская область","locality":"Истобное","species":["carnivores"],"kind":"quarantine_set"},
+    {"disease":"Бешенство животных","region":"Белгородская область","locality":"Стадница","species":["carnivores","wildlife"],"kind":"quarantine_set"},
+    {"disease":"Бешенство животных","region":"Воронежская область","locality":"Абрамовка","species":["cattle"],"kind":"quarantine_set"},
+    {"disease":"Бешенство животных","region":"Оренбургская область","locality":"Горный","kind":"quarantine_set"},
+    {"disease":"Бешенство животных","region":"Оренбургская область","locality":"Ленина","kind":"quarantine_set"},
+    {"disease":"Бешенство животных","region":"Тюменская область","locality":"Дубынка","species":["carnivores"],"kind":"quarantine_set"}
+  ],
+  "daily_2026-06-15.pdf": [
+    {"disease":"Бешенство животных","region":"Тамбовская область","locality":"Хитрово","species":["carnivores","wildlife"]},
+    {"disease":"Бешенство животных","region":"Тамбовская область","locality":"Солдатская Духовка","species":["wildlife"]},
+    {"disease":"Бешенство животных","region":"Алтайский край","locality":"Королевский","kind":"quarantine_lifted"},
+    {"disease":"Бешенство животных","region":"Алтайский край","locality":"Тюменцево","kind":"quarantine_lifted"}
+  ],
+  "daily_2026-08-31.pdf": [
+    {"disease":"Бешенство животных","region":"Кировская область","locality":"Канахинцы","species":["carnivores","wildlife"]},
+    {"disease":"Лейкоз КРС","region":"Амурская область","locality":"Дальневосточное","species":["cattle"],"kind":"quarantine_set"},
+    {"disease":"Лейкоз КРС","region":"Калужская область","locality":"Заболотье","species":["cattle"],"kind":"quarantine_lifted"},
+    {"disease":"Лейкоз КРС","region":"Самарская область","locality":"Мордово-Аделяково","kind":"quarantine_lifted"}
+  ],
+  "daily_2026-09-09.pdf": [
+    {"disease":"Бешенство животных","region":"Алтайский край","locality":"Верх-Неня","kind":"quarantine_set"},
+    {"disease":"Бешенство животных","region":"Красноярский край","locality":"Кома","kind":"quarantine_set"},
+    {"disease":"Бешенство животных","region":"Омская область","locality":"Птелино","kind":"quarantine_lifted"},
+    {"disease":"Бешенство животных","region":"Оренбургская область","locality":"Черкассы","kind":"quarantine_lifted"}
+  ],
+  "daily_2026-10-09.pdf": [
+    {"disease":"Бешенство животных","region":"Алтайский край","locality":"Солнечное","species":["carnivores"],"kind":"quarantine_set"},
+    {"disease":"Бешенство животных","region":"Республика Крым","locality":"Куйбышево","species":["small_ruminants"]},
+    {"disease":"Лейкоз КРС","region":"Калужская область","locality":"Черная Грязь","species":["cattle"]},
+    {"disease":"Лептоспироз КРС","region":"Свердловская область","locality":"Нижняя Иленка","species":["cattle"]}
+  ]
+}

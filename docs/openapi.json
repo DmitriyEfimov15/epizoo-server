@@ -1,0 +1,2742 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Мониторинг эпизоотической ситуации",
+    "description": "Справочный сервис по сообщениям ветслужб и СМИ. Отсутствие данных не подтверждает отсутствие заболевания.",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/v1/meta": {
+      "get": {
+        "summary": "Meta",
+        "operationId": "meta_api_v1_meta_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetaOut"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/refs/regions": {
+      "get": {
+        "summary": "Regions Ref",
+        "operationId": "regions_ref_api_v1_refs_regions_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/RegionRef"
+                  },
+                  "type": "array",
+                  "title": "Response Regions Ref Api V1 Refs Regions Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/refs/species": {
+      "get": {
+        "summary": "Species Ref",
+        "operationId": "species_ref_api_v1_refs_species_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/SpeciesRef"
+                  },
+                  "type": "array",
+                  "title": "Response Species Ref Api V1 Refs Species Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/diseases": {
+      "get": {
+        "summary": "Diseases",
+        "operationId": "diseases_api_v1_diseases_get",
+        "parameters": [
+          {
+            "name": "species",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Species"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DiseaseOut"
+                  },
+                  "title": "Response Diseases Api V1 Diseases Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/api/v1/refs/diseases": {
+      "get": {
+        "summary": "Diseases",
+        "operationId": "diseases_api_v1_refs_diseases_get",
+        "parameters": [
+          {
+            "name": "species",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Species"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DiseaseOut"
+                  },
+                  "title": "Response Diseases Api V1 Refs Diseases Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/api/v1/diseases/{slug}": {
+      "get": {
+        "summary": "Disease",
+        "operationId": "disease_api_v1_diseases__slug__get",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Slug"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiseaseOut"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/api/v1/map": {
+      "get": {
+        "summary": "Map Data",
+        "operationId": "map_data_api_v1_map_get",
+        "parameters": [
+          {
+            "name": "species",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Species"
+            }
+          },
+          {
+            "name": "disease",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Disease"
+            }
+          },
+          {
+            "name": "period",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 365,
+              "minimum": 1,
+              "default": 30,
+              "title": "Period"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MapRegion"
+                  },
+                  "title": "Response Map Data Api V1 Map Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/api/v1/regions/{code}": {
+      "get": {
+        "summary": "Region",
+        "operationId": "region_api_v1_regions__code__get",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Code"
+            }
+          },
+          {
+            "name": "species",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Species"
+            }
+          },
+          {
+            "name": "period",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 365,
+              "minimum": 1,
+              "default": 30,
+              "title": "Period"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegionOut"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/api/v1/regions/{code}/summary": {
+      "get": {
+        "summary": "Summary",
+        "operationId": "summary_api_v1_regions__code__summary_get",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Code"
+            }
+          },
+          {
+            "name": "species",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Species"
+            }
+          },
+          {
+            "name": "period",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 365,
+              "minimum": 1,
+              "default": 30,
+              "title": "Period"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SummaryOut"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/api/v1/regions/{code}/history": {
+      "get": {
+        "summary": "History",
+        "operationId": "history_api_v1_regions__code__history_get",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Code"
+            }
+          },
+          {
+            "name": "disease",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Disease"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/HistoryPoint"
+                  },
+                  "title": "Response History Api V1 Regions  Code  History Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/api/v1/events": {
+      "get": {
+        "summary": "Events",
+        "operationId": "events_api_v1_events_get",
+        "parameters": [
+          {
+            "name": "region",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Region"
+            }
+          },
+          {
+            "name": "disease",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Disease"
+            }
+          },
+          {
+            "name": "species",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Species"
+            }
+          },
+          {
+            "name": "kind",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "outbreak",
+                    "quarantine_set",
+                    "quarantine_lifted"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Kind"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "From"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "To"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "title": "Page"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 20,
+              "title": "Page Size"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventPage"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/api/v1/route-check": {
+      "get": {
+        "summary": "Route Check",
+        "operationId": "route_check_api_v1_route_check_get",
+        "parameters": [
+          {
+            "name": "species",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Species"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "From"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "To"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RouteResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/api/v1/offers": {
+      "get": {
+        "summary": "Offers",
+        "operationId": "offers_api_v1_offers_get",
+        "parameters": [
+          {
+            "name": "region",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Region"
+            }
+          },
+          {
+            "name": "species",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Species"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OfferOut"
+                  },
+                  "title": "Response Offers Api V1 Offers Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/api/v1/farms": {
+      "post": {
+        "summary": "Create Farm",
+        "operationId": "create_farm_api_v1_farms_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FarmIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FarmOut"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/farms/{token}": {
+      "get": {
+        "summary": "Farm",
+        "operationId": "farm_api_v1_farms__token__get",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FarmOut"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Farm",
+        "operationId": "update_farm_api_v1_farms__token__put",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Token"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FarmIn"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FarmOut"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/api/v1/farms/{token}/dashboard": {
+      "get": {
+        "summary": "Dashboard",
+        "operationId": "dashboard_api_v1_farms__token__dashboard_get",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DashboardOut"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/api/v1/farms/{token}/digest": {
+      "get": {
+        "summary": "Digest",
+        "operationId": "digest_api_v1_farms__token__digest_get",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DigestOut"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/api/v1/farms/{token}/telegram-link": {
+      "post": {
+        "summary": "Telegram Link",
+        "operationId": "telegram_link_api_v1_farms__token__telegram_link_post",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TelegramLink"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/api/v1/farms/{token}/subscription": {
+      "put": {
+        "summary": "Subscription",
+        "operationId": "subscription_api_v1_farms__token__subscription_put",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Token"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscriptionIn"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionOut"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Unsubscribe",
+        "operationId": "unsubscribe_api_v1_farms__token__subscription_delete",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Token"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/api/v1/internal/etl/run": {
+      "post": {
+        "summary": "Run Etl",
+        "operationId": "run_etl_api_v1_internal_etl_run_post",
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ETLResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DashboardOut": {
+        "properties": {
+          "farm": {
+            "$ref": "#/components/schemas/FarmOut"
+          },
+          "region": {
+            "$ref": "#/components/schemas/RegionOut"
+          },
+          "neighbors": {
+            "items": {
+              "$ref": "#/components/schemas/MapRegion"
+            },
+            "type": "array",
+            "title": "Neighbors"
+          },
+          "recommendations": {
+            "items": {
+              "$ref": "#/components/schemas/Recommendation"
+            },
+            "type": "array",
+            "title": "Recommendations"
+          },
+          "offers": {
+            "items": {
+              "$ref": "#/components/schemas/OfferOut"
+            },
+            "type": "array",
+            "title": "Offers"
+          },
+          "subscription": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SubscriptionOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "farm",
+          "region",
+          "neighbors",
+          "recommendations",
+          "offers",
+          "subscription"
+        ],
+        "title": "DashboardOut"
+      },
+      "DigestOut": {
+        "properties": {
+          "week_start": {
+            "type": "string",
+            "format": "date",
+            "title": "Week Start"
+          },
+          "week_end": {
+            "type": "string",
+            "format": "date",
+            "title": "Week End"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/EventOut"
+            },
+            "type": "array",
+            "title": "Events"
+          },
+          "source_urls": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Source Urls"
+          },
+          "recommendations": {
+            "items": {
+              "$ref": "#/components/schemas/Recommendation"
+            },
+            "type": "array",
+            "title": "Recommendations"
+          }
+        },
+        "type": "object",
+        "required": [
+          "week_start",
+          "week_end",
+          "text",
+          "events",
+          "source_urls",
+          "recommendations"
+        ],
+        "title": "DigestOut"
+      },
+      "DiseaseOut": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "slug": {
+            "type": "string",
+            "title": "Slug"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "aliases": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Aliases"
+          },
+          "species": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "cattle",
+                "small_ruminants",
+                "pigs",
+                "poultry",
+                "horses",
+                "bees",
+                "rabbits",
+                "carnivores",
+                "wildlife"
+              ]
+            },
+            "type": "array",
+            "title": "Species"
+          },
+          "is_zoonosis": {
+            "type": "boolean",
+            "title": "Is Zoonosis"
+          },
+          "base_level": {
+            "type": "integer",
+            "title": "Base Level"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "recommendations": {
+            "items": {
+              "$ref": "#/components/schemas/Recommendation"
+            },
+            "type": "array",
+            "title": "Recommendations"
+          },
+          "symptoms": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Symptoms"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "slug",
+          "name",
+          "aliases",
+          "species",
+          "is_zoonosis",
+          "base_level",
+          "description",
+          "recommendations",
+          "symptoms"
+        ],
+        "title": "DiseaseOut"
+      },
+      "ETLResult": {
+        "properties": {
+          "reports": {
+            "type": "integer",
+            "title": "Reports",
+            "default": 0
+          },
+          "events": {
+            "type": "integer",
+            "title": "Events",
+            "default": 0
+          },
+          "weekly_counts": {
+            "type": "integer",
+            "title": "Weekly Counts",
+            "default": 0
+          },
+          "skipped": {
+            "type": "integer",
+            "title": "Skipped",
+            "default": 0
+          },
+          "partial": {
+            "type": "integer",
+            "title": "Partial",
+            "default": 0
+          },
+          "issues": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Issues"
+          }
+        },
+        "type": "object",
+        "title": "ETLResult"
+      },
+      "ErrorOut": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "ErrorOut"
+      },
+      "EventOut": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "report_id": {
+            "type": "integer",
+            "title": "Report Id"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "title": "Date"
+          },
+          "disease_id": {
+            "type": "integer",
+            "title": "Disease Id"
+          },
+          "disease_slug": {
+            "type": "string",
+            "title": "Disease Slug"
+          },
+          "disease_name": {
+            "type": "string",
+            "title": "Disease Name"
+          },
+          "region_code": {
+            "type": "string",
+            "title": "Region Code"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          },
+          "locality": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Locality"
+          },
+          "species": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "cattle",
+                "small_ruminants",
+                "pigs",
+                "poultry",
+                "horses",
+                "bees",
+                "rabbits",
+                "carnivores",
+                "wildlife"
+              ]
+            },
+            "type": "array",
+            "title": "Species"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "outbreak",
+              "quarantine_set",
+              "quarantine_lifted"
+            ],
+            "title": "Kind"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "scores": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Scores"
+          },
+          "total": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total"
+          },
+          "level": {
+            "type": "integer",
+            "title": "Level"
+          },
+          "source_urls": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Source Urls"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "report_id",
+          "date",
+          "disease_id",
+          "disease_slug",
+          "disease_name",
+          "region_code",
+          "district",
+          "locality",
+          "species",
+          "kind",
+          "text",
+          "scores",
+          "total",
+          "level",
+          "source_urls"
+        ],
+        "title": "EventOut"
+      },
+      "EventPage": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/EventOut"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "page": {
+            "type": "integer",
+            "title": "Page"
+          },
+          "page_size": {
+            "type": "integer",
+            "title": "Page Size"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "total",
+          "page",
+          "page_size"
+        ],
+        "title": "EventPage"
+      },
+      "FarmIn": {
+        "properties": {
+          "region_code": {
+            "type": "string",
+            "maxLength": 3,
+            "minLength": 2,
+            "title": "Region Code"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          },
+          "species": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "cattle",
+                "small_ruminants",
+                "pigs",
+                "poultry",
+                "horses",
+                "bees",
+                "rabbits",
+                "carnivores",
+                "wildlife"
+              ]
+            },
+            "type": "array",
+            "maxItems": 9,
+            "minItems": 1,
+            "title": "Species"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "region_code",
+          "species"
+        ],
+        "title": "FarmIn"
+      },
+      "FarmOut": {
+        "properties": {
+          "token": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Token"
+          },
+          "region_code": {
+            "type": "string",
+            "title": "Region Code"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          },
+          "species": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "cattle",
+                "small_ruminants",
+                "pigs",
+                "poultry",
+                "horses",
+                "bees",
+                "rabbits",
+                "carnivores",
+                "wildlife"
+              ]
+            },
+            "type": "array",
+            "title": "Species"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "token",
+          "region_code",
+          "district",
+          "species",
+          "created_at"
+        ],
+        "title": "FarmOut"
+      },
+      "HistoryPoint": {
+        "properties": {
+          "week_start": {
+            "type": "string",
+            "format": "date",
+            "title": "Week Start"
+          },
+          "week_end": {
+            "type": "string",
+            "format": "date",
+            "title": "Week End"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "outbreak",
+              "quarantine_set",
+              "quarantine_lifted"
+            ],
+            "title": "Kind"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "week_start",
+          "week_end",
+          "kind",
+          "count"
+        ],
+        "title": "HistoryPoint"
+      },
+      "MapRegion": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "level": {
+            "type": "integer",
+            "title": "Level"
+          },
+          "event_count": {
+            "type": "integer",
+            "title": "Event Count"
+          },
+          "active_quarantine_count": {
+            "type": "integer",
+            "title": "Active Quarantine Count"
+          },
+          "unconfirmed_quarantine_count": {
+            "type": "integer",
+            "title": "Unconfirmed Quarantine Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "name",
+          "level",
+          "event_count",
+          "active_quarantine_count",
+          "unconfirmed_quarantine_count"
+        ],
+        "title": "MapRegion"
+      },
+      "MetaOut": {
+        "properties": {
+          "last_report_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Report Date"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          },
+          "report_count": {
+            "type": "integer",
+            "title": "Report Count"
+          },
+          "partial_report_count": {
+            "type": "integer",
+            "title": "Partial Report Count"
+          },
+          "first_report_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "First Report Date"
+          },
+          "source_url": {
+            "type": "string",
+            "title": "Source Url"
+          },
+          "disclaimer": {
+            "type": "string",
+            "title": "Disclaimer"
+          }
+        },
+        "type": "object",
+        "required": [
+          "last_report_date",
+          "updated_at",
+          "report_count",
+          "partial_report_count",
+          "first_report_date",
+          "source_url",
+          "disclaimer"
+        ],
+        "title": "MetaOut"
+      },
+      "OfferOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "url": {
+            "type": "string",
+            "title": "Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "description",
+          "url"
+        ],
+        "title": "OfferOut"
+      },
+      "QuarantineOut": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "set_event_id": {
+            "type": "integer",
+            "title": "Set Event Id"
+          },
+          "disease_id": {
+            "type": "integer",
+            "title": "Disease Id"
+          },
+          "disease_slug": {
+            "type": "string",
+            "title": "Disease Slug"
+          },
+          "disease_name": {
+            "type": "string",
+            "title": "Disease Name"
+          },
+          "region_code": {
+            "type": "string",
+            "title": "Region Code"
+          },
+          "locality": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Locality"
+          },
+          "species": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "cattle",
+                "small_ruminants",
+                "pigs",
+                "poultry",
+                "horses",
+                "bees",
+                "rabbits",
+                "carnivores",
+                "wildlife"
+              ]
+            },
+            "type": "array",
+            "title": "Species"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "unconfirmed"
+            ],
+            "title": "Status"
+          },
+          "since": {
+            "type": "string",
+            "format": "date",
+            "title": "Since"
+          },
+          "until": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Until"
+          },
+          "level": {
+            "type": "integer",
+            "title": "Level"
+          },
+          "source_urls": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Source Urls"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "set_event_id",
+          "disease_id",
+          "disease_slug",
+          "disease_name",
+          "region_code",
+          "locality",
+          "species",
+          "status",
+          "since",
+          "until",
+          "level",
+          "source_urls"
+        ],
+        "title": "QuarantineOut"
+      },
+      "Recommendation": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "source_url": {
+            "type": "string",
+            "title": "Source Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "text",
+          "source_url"
+        ],
+        "title": "Recommendation"
+      },
+      "RegionOut": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "level": {
+            "type": "integer",
+            "title": "Level"
+          },
+          "event_count": {
+            "type": "integer",
+            "title": "Event Count"
+          },
+          "active_quarantine_count": {
+            "type": "integer",
+            "title": "Active Quarantine Count"
+          },
+          "unconfirmed_quarantine_count": {
+            "type": "integer",
+            "title": "Unconfirmed Quarantine Count"
+          },
+          "quarantines": {
+            "items": {
+              "$ref": "#/components/schemas/QuarantineOut"
+            },
+            "type": "array",
+            "title": "Quarantines"
+          },
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/EventOut"
+            },
+            "type": "array",
+            "title": "Events"
+          },
+          "neighbors": {
+            "items": {
+              "$ref": "#/components/schemas/MapRegion"
+            },
+            "type": "array",
+            "title": "Neighbors"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "name",
+          "level",
+          "event_count",
+          "active_quarantine_count",
+          "unconfirmed_quarantine_count",
+          "quarantines",
+          "events",
+          "neighbors"
+        ],
+        "title": "RegionOut"
+      },
+      "RegionRef": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "aliases": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Aliases"
+          },
+          "federal_district": {
+            "type": "string",
+            "title": "Federal District"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "name",
+          "aliases",
+          "federal_district"
+        ],
+        "title": "RegionRef"
+      },
+      "RouteResult": {
+        "properties": {
+          "from_region": {
+            "$ref": "#/components/schemas/RegionOut"
+          },
+          "to_region": {
+            "$ref": "#/components/schemas/RegionOut"
+          },
+          "species": {
+            "type": "string",
+            "enum": [
+              "cattle",
+              "small_ruminants",
+              "pigs",
+              "poultry",
+              "horses",
+              "bees",
+              "rabbits",
+              "carnivores",
+              "wildlife"
+            ],
+            "title": "Species"
+          },
+          "verdict": {
+            "type": "string",
+            "enum": [
+              "low",
+              "elevated",
+              "high"
+            ],
+            "title": "Verdict"
+          },
+          "checklist": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Checklist"
+          },
+          "official_url": {
+            "type": "string",
+            "title": "Official Url"
+          },
+          "disclaimer": {
+            "type": "string",
+            "title": "Disclaimer"
+          }
+        },
+        "type": "object",
+        "required": [
+          "from_region",
+          "to_region",
+          "species",
+          "verdict",
+          "checklist",
+          "official_url",
+          "disclaimer"
+        ],
+        "title": "RouteResult"
+      },
+      "SpeciesRef": {
+        "properties": {
+          "slug": {
+            "type": "string",
+            "enum": [
+              "cattle",
+              "small_ruminants",
+              "pigs",
+              "poultry",
+              "horses",
+              "bees",
+              "rabbits",
+              "carnivores",
+              "wildlife"
+            ],
+            "title": "Slug"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "slug",
+          "name"
+        ],
+        "title": "SpeciesRef"
+      },
+      "SubscriptionIn": {
+        "properties": {
+          "min_level": {
+            "type": "integer",
+            "maximum": 5.0,
+            "minimum": 1.0,
+            "title": "Min Level",
+            "default": 3
+          },
+          "include_neighbors": {
+            "type": "boolean",
+            "title": "Include Neighbors",
+            "default": true
+          },
+          "digest_enabled": {
+            "type": "boolean",
+            "title": "Digest Enabled",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "SubscriptionIn"
+      },
+      "SubscriptionOut": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "min_level": {
+            "type": "integer",
+            "title": "Min Level"
+          },
+          "include_neighbors": {
+            "type": "boolean",
+            "title": "Include Neighbors"
+          },
+          "digest_enabled": {
+            "type": "boolean",
+            "title": "Digest Enabled"
+          },
+          "chat_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Chat Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "min_level",
+          "include_neighbors",
+          "digest_enabled",
+          "chat_id"
+        ],
+        "title": "SubscriptionOut"
+      },
+      "SummaryOut": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "provider": {
+            "type": "string",
+            "title": "Provider"
+          },
+          "source_urls": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Source Urls"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "text",
+          "provider",
+          "source_urls",
+          "created_at"
+        ],
+        "title": "SummaryOut"
+      },
+      "TelegramLink": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "url"
+        ],
+        "title": "TelegramLink"
+      }
+    }
+  }
+}

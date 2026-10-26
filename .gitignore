@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Данные и секреты
+data/cache/
+.env
+*.sqlite3
+
+# Прочее
+.DS_Store
+.claude/
+
+# Рабочие материалы Claude Code: планы и отчёты о проверках.
+# openapi.json оставлен в репозитории — из него генерируются типы фронтенда (pnpm api:types).
+docs/*
+!docs/openapi.json

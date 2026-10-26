@@ -1,0 +1,138 @@
+# Файл автоматически создан uv следующей командой:
+#    uv export --frozen --no-dev --no-hashes --format requirements-txt --output-file requirements.lock.txt
+aiofiles==25.1.0
+    # зависимость aiogram
+aiogram==3.31.0
+    # зависимость epizoo-backend
+aiohappyeyeballs==2.7.1
+    # зависимость aiohttp
+aiohttp==3.14.5
+    # зависимость aiogram
+aiosignal==1.4.0
+    # зависимость aiohttp
+aiosqlite==0.22.1
+    # зависимость epizoo-backend
+alembic==1.20.0
+    # зависимость epizoo-backend
+annotated-doc==0.0.5
+    # зависимость fastapi
+annotated-types==0.8.0
+    # зависимость pydantic
+anyio==4.15.1
+    # via
+    #   httpx
+    #   starlette
+    #   watchfiles
+apscheduler==3.11.3
+    # зависимость epizoo-backend
+asyncpg==0.32.0
+    # зависимость epizoo-backend
+attrs==26.1.0
+    # зависимость aiohttp
+certifi==2026.7.22
+    # via
+    #   aiogram
+    #   httpcore
+    #   httpx
+click==8.5.0
+    # зависимость uvicorn
+fastapi==0.143.0
+    # зависимость epizoo-backend
+frozenlist==1.8.0
+    # via
+    #   aiohttp
+    #   aiosignal
+greenlet==3.5.6
+    # зависимость sqlalchemy
+h11==0.16.0
+    # via
+    #   httpcore
+    #   uvicorn
+httpcore==1.0.9
+    # зависимость httpx
+httptools==0.9.0
+    # зависимость uvicorn
+httpx==0.28.1
+    # зависимость epizoo-backend
+idna==3.20
+    # via
+    #   anyio
+    #   httpx
+    #   yarl
+magic-filter==1.0.12
+    # зависимость aiogram
+mako==1.4.3
+    # зависимость alembic
+markupsafe==3.0.4
+    # зависимость mako
+multidict==7.1.0
+    # via
+    #   aiohttp
+    #   yarl
+opentelemetry-api==1.45.1
+    # зависимость fastapi
+propcache==0.5.4
+    # via
+    #   aiohttp
+    #   yarl
+pydantic==2.13.5
+    # via
+    #   aiogram
+    #   epizoo-backend
+    #   fastapi
+    #   pydantic-settings
+pydantic-core==2.46.5
+    # зависимость pydantic
+pydantic-settings==2.15.0
+    # зависимость epizoo-backend
+pymupdf==1.28.2
+    # зависимость epizoo-backend
+python-dotenv==1.2.4
+    # via
+    #   pydantic-settings
+    #   uvicorn
+pyyaml==6.0.3
+    # via
+    #   epizoo-backend
+    #   uvicorn
+rapidfuzz==3.14.6
+    # зависимость epizoo-backend
+sqlalchemy==2.1.4
+    # via
+    #   alembic
+    #   epizoo-backend
+starlette==1.8.0
+    # зависимость fastapi
+typing-extensions==4.16.0
+    # via
+    #   aiogram
+    #   aiohttp
+    #   aiosignal
+    #   alembic
+    #   anyio
+    #   fastapi
+    #   opentelemetry-api
+    #   pydantic
+    #   pydantic-core
+    #   sqlalchemy
+    #   starlette
+    #   typing-inspection
+typing-inspection==0.4.4
+    # via
+    #   fastapi
+    #   pydantic
+    #   pydantic-settings
+tzdata==2026.5 ; sys_platform == 'win32'
+    # зависимость tzlocal
+tzlocal==5.4.4
+    # зависимость apscheduler
+uvicorn==0.54.0
+    # зависимость epizoo-backend
+uvloop==0.23.0 ; platform_python_implementation != 'PyPy' and sys_platform != 'cygwin' and sys_platform != 'win32'
+    # зависимость uvicorn
+watchfiles==1.3.0
+    # зависимость uvicorn
+websockets==17.2
+    # зависимость uvicorn
+yarl==1.25.1
+    # зависимость aiohttp
